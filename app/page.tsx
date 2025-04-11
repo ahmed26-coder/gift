@@ -1,95 +1,87 @@
+'use client';
+
+import { useState } from 'react';
+import Motion from "./Components/Motion"
 import Image from "next/image";
-import styles from "./page.module.css";
+import Motions from './Components/Motions';
+import ContactForm from './Components/ContactForm';
+
+const data = [
+  { name: 'whatsaPP', name2:"واتساب", link: 'https://wa.me/201158129004', logo: "/logo-whatsapp.png", },
+  { name: 'instagram', name2:"انستجرام", link: 'https://www.instagram.com/boshkashyoussef?igsh=MjluZmhudjZ5emNy', logo: "/instagram-removebg-preview.png", },
+  { name: "snapchat", name2:"اسناب شات", link: "https://www.snapchat.com/add/foxxxx1236?share_id=_0Tp0zoDaxw&locale=ar-AE", logo: "/sm-removebg-preview.png", },
+  { name: "tiktok", name2:"تيك توك", link: "https://www.tiktok.com/@abnalakabrrr?_t=ZS-8vOodrOJcUm&_r=1", logo: "/aaa-removebg-preview.png", },
+  { name: "twitter", name2:"تيلجرام", link: "https://t.me/+201158129004", logo: "/sm2-removebg-preview.png", },
+];
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [search, setSearch] = useState('');
+  const [result, setResult] = useState<string | null>(null);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const app = data.find((item) =>
+      item.name.toLowerCase() === search.toLowerCase() || item.name2.toLowerCase() === search.toLowerCase() 
+    );
+    setResult(app ? app.link : 'There is no application with this name.');
+  };
+
+  return (
+    <main className="min-h-screen mt-10 flex flex-col items-center justify-center p-6 gap-10 text-center">
+      <Motions />
+      <div>
+        <h1 className=" text-lg lg:text-2xl font-bold lg:flex text-center items-center gap-2">Software Engineer<p className=" flex items-center"><div className="loader"> AbdulRahman</div><Motion /></p></h1>
+      </div>
+
+      <div className="flex flex-col items-center gap-4 w-full">
+        <form onSubmit={handleSearch} className="flex w-full lg:w-[40%] items-center gap-3">
+          <input
+            type="text"
+            placeholder="Type the application name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="p-2 pl-5 rounded-full border-2 border-gray-100 w-full outline-0 focus:border-blue-500 bg-gray-100"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-2xl"
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            Search
+          </button>
+        </form>
+
+        {result && (
+          <div className="text-center mt-4">
+            {result.startsWith('http') ? (() => {
+              const matchedApp = data.find((item) => item.link === result);
+              return (
+                <a
+                  href={result}
+                  target="_blank"
+                  className="flex flex-col items-center justify-center border-2 border-gray-400 rounded-4xl w-60 hover:shadow-lg transition hover:scale-105 bg-white"
+                >
+                  {matchedApp?.logo ? (
+                    <Image
+                      src={matchedApp.logo}
+                      alt={matchedApp?.name}
+                      width={250}
+                      height={250}
+                    />
+                  ) : (
+                    <p>No logo available</p>
+                  )}
+
+                </a>
+              );
+            })() : (
+              <span className="text-red-500">{result}</span>
+            )}
+          </div>
+        )}
+
+      </div>
+      <ContactForm />
+    </main>
   );
 }
