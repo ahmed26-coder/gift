@@ -17,8 +17,8 @@ export default function ContactForm({ showName = true }: { showName?: boolean })
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!name || !message) {
-            setErrorMessage('Please fill in both the name and message fields.');
+        if ((selected === 'first' && (!name || !message)) || (selected === 'second' && !message)) {
+            setErrorMessage('Please fill in the required fields.');
         } else {
             emailjs
                 .sendForm('service_alg8q9a', 'template_18j18fa', form.current!, 'Eyawzki3vdn0GuKpm')
