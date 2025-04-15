@@ -11,7 +11,7 @@ const data = [
   { name: 'instagram', name2:"انستجرام", link: 'https://www.instagram.com/boshkashyoussef?igsh=MjluZmhudjZ5emNy', logo: "/instagram-removebg-preview.png", },
   { name: "snapchat", name2:"اسناب شات", link: "https://www.snapchat.com/add/foxxxx1236?share_id=_0Tp0zoDaxw&locale=ar-AE", logo: "/sm-removebg-preview.png", },
   { name: "tiktok", name2:"تيك توك", link: "https://www.tiktok.com/@abnalakabrrr?_t=ZS-8vOodrOJcUm&_r=1", logo: "/aaa-removebg-preview.png", },
-  { name: "twitter", name2:"تيلجرام", link: "https://t.me/+201158129004", logo: "/sm2-removebg-preview.png", },
+  { name: "twitter", name2:"تويتر", link: "https://t.me/+201158129004", logo: "/sm2-removebg-preview.png", },
 ];
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
     <main className="min-h-screen mt-10 flex flex-col items-center justify-center p-6 gap-10 text-center">
       <Motions />
       <div>
-        <h1 className=" text-lg lg:text-2xl font-bold lg:flex text-center items-center gap-2">Software Engineer<p className=" flex items-center"><div className="loader"> AbdulRahman</div><Motion /></p></h1>
+        <h1 className=" text-lg lg:text-2xl font-bold lg:flex text-center items-center gap-2">Software Engineer<p className=" flex items-center"><div className="loader mr-3"> AbdulRahman</div><Motion /></p></h1>
       </div>
 
       <div className="flex flex-col items-center gap-4 w-full">
