@@ -7,11 +7,12 @@ import Motions from './Components/Motions';
 import ContactForm from './Components/ContactForm';
 
 const data = [
-  { name: 'whatsaPP', name2:"واتساب", link: 'https://wa.me/201158129004', logo: "/logo-whatsapp.png", },
-  { name: 'instagram', name2:"انستجرام", link: 'https://www.instagram.com/boshkashyoussef?igsh=MjluZmhudjZ5emNy', logo: "/instagram-removebg-preview.png", },
-  { name: "snapchat", name2:"اسناب شات", link: "https://www.snapchat.com/add/foxxxx1236?share_id=_0Tp0zoDaxw&locale=ar-AE", logo: "/sm-removebg-preview.png", },
-  { name: "tiktok", name2:"تيك توك", link: "https://www.tiktok.com/@abnalakabrrr?_t=ZS-8vOodrOJcUm&_r=1", logo: "/aaa-removebg-preview.png", },
-  { name: "twitter", name2:"تويتر", link: "https://t.me/+201158129004", logo: "/sm2-removebg-preview.png", },
+  { name: 'whatsaPP', name2:"واتساب", name3:"واتس", link: 'https://wa.me/201158129004', logo: "/logo-whatsapp.png", },
+  { name: 'instagram', name2:"انستجرام", name3:"انستا", link: 'https://www.instagram.com/boshkashyoussef?igsh=MjluZmhudjZ5emNy', logo: "/instagram-removebg-preview.png", },
+  { name: "snapchat", name2:"اسناب شات", name3:"اسناب", link: "https://www.snapchat.com/add/foxxxx1236?share_id=_0Tp0zoDaxw&locale=ar-AE", logo: "/sm-removebg-preview.png", },
+  { name: "tiktok", name2:"تيك توك", name3:"تيك", link: "https://www.tiktok.com/@abnalakabrrr?_t=ZS-8vOodrOJcUm&_r=1", logo: "/aaa-removebg-preview.png", },
+  { name: "twitter", name2:"تويتر", name3:"تويت", link: "https://t.me/+201158129004", logo: "/sm2-removebg-preview.png", },
+  { name: "phone", name2:"تلفون", name3:"فون", link:"01158129004", logo:"01158129004"}
 ];
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
     e.preventDefault();
 
     const app = data.find((item) =>
-      item.name.toLowerCase() === search.toLowerCase() || item.name2.toLowerCase() === search.toLowerCase() 
+      item.name.toLowerCase() === search.toLowerCase() || item.name2.toLowerCase() === search.toLowerCase() || item.name3.toLowerCase() === search.toLowerCase() 
     );
     setResult(app ? app.link : 'There is no application with this name.');
   };
