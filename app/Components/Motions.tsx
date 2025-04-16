@@ -1,17 +1,20 @@
-"use client";
+'use client';
+
 import React, { useState, useCallback } from "react";
 import Image from "next/image";
 import { IoClose } from "react-icons/io5";
 
 export default function Motions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = useCallback(() => setIsModalOpen(true), []);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   return (
     <>
       <div
         className="relative flex items-center justify-center rounded-full shadow-2xl shadow-blue-500 cursor-pointer"
-        onClick={() => setIsModalOpen(true)}
+        onClick={openModal}
         data-aos="zoom-in"
       >
         <div className="absolute w-[220px] h-[220px] sm:w-[270px] sm:h-[270px] rounded-full border-4 border-dashed border-black animate-spin-slow z-0" />
@@ -26,6 +29,7 @@ export default function Motions() {
           />
         </div>
       </div>
+
       {isModalOpen && (
         <div
           className="fixed inset-0 z-[9999] bg-black/50 backdrop-blur-sm flex justify-center items-center"
